@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <form class="container row g-3 needs-validation" #form="ngForm" novalidate>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">First name</label>
+          <input name="firstname" type="text" #fname="ngModel" [(ngModel)]="myObj.firstname" class="form-control" id="validationCustom01" required minlength="3">
+          <div class="text-danger">
+            @if (fname.touched && fname.errors?.['required']) {
+              <span>this field is required</span>
+            }@else if (fname.touched && fname.errors?.['minlength']) {
+              <span>min 3 words is required</span>
+            }
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label">Last name</label>
+          <input name="lastname" #lname="ngModel" type="text" [(ngModel)]="myObj.lastname" class="form-control" id="validationCustom02"  required>
+          <div class="text-danger">
+            @if (lname.touched && lname.errors?.['required']) {
+              <span>this field is required</span>
+            }@else if (lname.touched && lname.errors?.['minlength']) {
+              <span>min 3 words is required</span>
+            }
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom03" class="form-label">Mobile Number</label>
+          <input name="phonenumber" #pname="ngModel" type="tel" [(ngModel)]="myObj.phonenumber" class="form-control" id="validationCustom03"  required minlength="10" maxlength="10">
+          <div class="text-danger">
+            @if (pname.touched && pname.errors?.['required']) {
+              <span>this field is required</span>
+            }
+            @else if ((pname.touched ) && pname.errors?.['minlength']) {
+              <span>Enter valid number</span>
+            }
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustomUsername" class="form-label">Username</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend"></span>
+            <input name="username" #uname="ngModel" type="text" [(ngModel)]="myObj.username" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+            <div class="text-danger">
+              @if (uname.touched && uname.errors?.['required']) {
+                <span>this field is required</span>
+              }
+            </div>
+            <div class="invalid-feedback">
+              Please choose a username.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">City</label>
+          <input name="city" type="text" #cname="ngModel" [(ngModel)]="myObj.city" class="form-control" id="validationCustom03" required>
+          <div class="text-danger">
+            @if (cname.touched && cname.errors?.['required']) {
+              <span>this field is required</span>
+            }
+          </div>
+        </div>
+  
+        <div class="col-md-3">
+          <label for="validationCustom04" class="form-label">State</label>
+          <select name="state" #sname="ngModel" [(ngModel)]="myObj.state" class="form-select" id="validationCustom04" required>
+            <option selected disabled value="">Choose...</option>
+            <option>Uttar Pradesh</option>
+            <option>Punjab</option>
+            <option>Goa</option>
+          </select>
+          <div class="text-danger">
+            @if (sname.touched && sname.errors?.['required']) {
+              <span>this field is required</span>
+            }
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationCustom05" class="form-label">Zip</label>
+          <input name="zipCode" #zname="ngModel" type="text" [(ngModel)]="myObj.zipCode" class="form-control" id="validationCustom05" required>
+          <div class="text-danger">
+            @if (zname.touched && zname.errors?.['required']) {
+              <span>Enter Zip code</span>
+            }
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input name="isTerms" #tname="ngModel" [(ngModel)]="myObj.isTerms" class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+              Agree to terms and conditions
+            </label>
+            <div class="text-danger">
+              @if (tname.touched && tname.errors?.['required']) {
+                <span>this field is required</span>
+              }
+            </div>
+            <div class="invalid-feedback">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" [disabled]="form.invalid" type="submit" (click)="onSubmit()">Submit form</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-4">
+      {{formValue|json}}
+    </div>
+  </div>
+</div>

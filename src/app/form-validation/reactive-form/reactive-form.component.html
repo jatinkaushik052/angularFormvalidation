@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <form class="row g-3 needs-validation" [formGroup]="myForm" novalidate>
+                <div class="col-md-4">
+                  <label for="validationCustom01" class="form-label">First name</label>
+                  <input formControlName="firstname" type="text" class="form-control" id="validationCustom01" required>
+                  <div class="text-danger">
+                    @if (myForm.controls['firstname'].touched && myForm.controls['firstname'].errors?.['required']) {
+                        <span>This is field is required</span>
+                    }@else if (myForm.controls['firstname'].errors?.['minlength']) {
+                        <span>min 3 words is required</span>
+                    }
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="validationCustom02" class="form-label">Last name</label>
+                  <input formControlName="lastname" type="text" class="form-control" id="validationCustom02" required>
+                  <div class="text-danger">
+                    @if (myForm.controls['lastname'].touched && myForm.controls['lastname'].errors?.['required']) {
+                        <span>This is field is required</span>
+                    }@else if (myForm.controls['lastname'].errors?.['minlength']) {
+                        <span>min 3 words is required</span>
+                    }
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="validationCustomUsername" class="form-label">Email</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend"></span>
+                    <input formControlName="username" type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                    <div class="text-danger">
+                        @if (myForm.controls['username'].touched && myForm.controls['username'].errors?.['email']) {
+                            <span>used correct format of email</span>
+                        }@else if (myForm.controls['username'].errors?.['minlength']) {
+                            <span>min 3 words is required</span>
+                        }
+                      </div>
+                    
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationCustom03" class="form-label">City</label>
+                  <input formControlName="city" type="text" class="form-control" id="validationCustom03" required>
+                  <div class="text-danger">
+                    @if (myForm.controls['city'].touched && myForm.controls['city'].errors?.['required']) {
+                        <span>This is field is required</span>
+                    }@else if (myForm.controls['city'].errors?.['minlength']) {
+                        <span>min 3 words is required</span>
+                    }
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <label for="validationCustom04" class="form-label">State</label>
+                  <select formControlName="state" class="form-select" id="validationCustom04" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option>Punjab</option>
+                    <option>Uttar Pradesh</option>
+                    <option>Goa</option>
+        
+                  </select>
+                
+                  <div class="text-danger">
+                    @if (myForm.controls['state'].touched && myForm.controls['state'].errors?.['required']) {
+                        <span>This is field is required</span>
+                    }
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <label for="validationCustom05" class="form-label">Zip</label>
+                  <input formControlName="zipCode" type="text" class="form-control" id="validationCustom05" required>
+                  
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input formControlName="isTerms" class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                      Agree to terms and conditions
+                    </label>
+                    <div class="text-danger">
+                        @if (myForm.controls['isTerms'].touched && myForm.controls['isTerms'].errors?.['required']) {
+                            <span>This is field is required</span>
+                        }
+                      </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit" [disabled]="myForm.invalid" (click)="onSubmit()">Submit form</button>
+                </div>
+              </form>
+        </div>
+        <div class="col-4">{{formValue | json}}</div>
+    </div>
+</div>
